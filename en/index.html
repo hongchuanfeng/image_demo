@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing Tools</title>
+    <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWMGEQS9C0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-HWMGEQS9C0');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Navigation -->
+        <header class="header">
+            <div class="nav-container">
+                <h1 class="logo">Image Processing Tools</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn active" data-page="home">Home</button>
+                    <button class="nav-btn" data-page="enlarge">Image Enlarge</button>
+                    <button class="nav-btn" data-page="text">Add Text</button>
+                    <a href="../index.html" class="lang-btn">中文</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div id="home" class="page active">
+                <div class="hero">
+                    <h2>Professional Image Processing Tools</h2>
+                    <p>Support image enlargement and text addition, simple and powerful</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card" data-page="enlarge">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Image Enlarge</h3>
+                        <p>Intelligently enlarge images while maintaining clarity, supports multiple formats</p>
+                        <button class="feature-btn">Try Now</button>
+                    </div>
+                    
+                    <div class="feature-card" data-page="text">
+                        <div class="feature-icon">✏️</div>
+                        <h3>Add Text</h3>
+                        <p>Add custom text to images with color and size adjustments</p>
+                        <button class="feature-btn">Try Now</button>
+                    </div>
+                </div>
+
+                <div class="examples">
+                    <h3>Feature Demo</h3>
+                    <div class="example-gallery">
+                        <div class="example-item">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkJlZm9yZTwvdGV4dD48L3N2Zz4=" alt="Example image">
+                            <p>Before</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="example-item">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkFmdGVyPC90ZXh0Pjwvc3ZnPg==" alt="Example image">
+                            <p>After</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Enlarge Page -->
+            <div id="enlarge" class="page">
+                <div class="page-header">
+                    <h2>Image Enlarge Tool</h2>
+                    <p>Upload image, select scale factor, get high-definition large image</p>
+                </div>
+
+                <div class="tool-container">
+                    <div class="upload-area" id="enlargeUploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📁</div>
+                            <p>Click or drag to upload image</p>
+                            <p class="upload-hint">Supports JPG, PNG, GIF formats</p>
+                        </div>
+                        <input type="file" id="enlargeFileInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="controls" id="enlargeControls" style="display: none;">
+                        <div class="control-group">
+                            <label>Scale Factor:</label>
+                            <select id="scaleSelect">
+                                <option value="2">2x</option>
+                                <option value="3">3x</option>
+                                <option value="4">4x</option>
+                                <option value="5">5x</option>
+                            </select>
+                        </div>
+                        <button class="process-btn" id="enlargeProcess">Start Enlarging</button>
+                    </div>
+
+                    <div class="result-area" id="enlargeResult" style="display: none;">
+                        <div class="result-header">
+                            <h3>Processing Result</h3>
+                            <button class="download-btn" id="enlargeDownload">Download Image</button>
+                        </div>
+                        <div class="result-content">
+                            <canvas id="enlargeCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3>Instructions</h3>
+                    <ol>
+                        <li>Click upload area to select image file</li>
+                        <li>Select desired scale factor</li>
+                        <li>Click "Start Enlarging" button to process image</li>
+                        <li>Click "Download Image" to save result after processing</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Add Text Page -->
+            <div id="text" class="page">
+                <div class="page-header">
+                    <h2>Image Text Addition Tool</h2>
+                    <p>Add custom text to images with color and size adjustments</p>
+                </div>
+
+                <div class="tool-container">
+                    <div class="upload-area" id="textUploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📁</div>
+                            <p>Click or drag to upload image</p>
+                            <p class="upload-hint">Supports JPG, PNG, GIF formats</p>
+                        </div>
+                        <input type="file" id="textFileInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="controls" id="textControls" style="display: none;">
+                        <div class="control-group">
+                            <label>Enter Text:</label>
+                            <input type="text" id="textInput" placeholder="Enter text to add">
+                        </div>
+                        <div class="control-group">
+                            <label>Font Size:</label>
+                            <input type="range" id="fontSizeSlider" min="12" max="72" value="24">
+                            <span id="fontSizeValue">24px</span>
+                        </div>
+                        <div class="control-group">
+                            <label>Font Color:</label>
+                            <input type="color" id="fontColorPicker" value="#000000">
+                        </div>
+                        <div class="control-group">
+                            <label>Font:</label>
+                            <select id="fontFamilySelect">
+                                <option value="Arial">Arial</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Courier New">Courier New</option>
+                                <option value="Microsoft YaHei">Microsoft YaHei</option>
+                                <option value="SimSun">SimSun</option>
+                            </select>
+                        </div>
+                        <button class="process-btn" id="textProcess">Add Text</button>
+                    </div>
+
+                    <div class="canvas-container" id="textCanvasContainer" style="display: none;">
+                        <canvas id="textCanvas"></canvas>
+                        <div class="canvas-instructions">Click on image to select text position</div>
+                    </div>
+
+                    <div class="result-area" id="textResult" style="display: none;">
+                        <div class="result-header">
+                            <h3>Processing Result</h3>
+                            <button class="download-btn" id="textDownload">Download Image</button>
+                        </div>
+                        <div class="result-content">
+                            <canvas id="textResultCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3>Instructions</h3>
+                    <ol>
+                        <li>Upload image to add text to</li>
+                        <li>Enter text content to add</li>
+                        <li>Adjust font size, color and style</li>
+                        <li>Click on image to select text position</li>
+                        <li>Click "Add Text" button to process image</li>
+                        <li>Download result after processing</li>
+                    </ol>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2024 Image Processing Tools - Simple and Easy Online Image Editor</p>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

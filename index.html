@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片处理工具 - Image Processing Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HWMGEQS9C0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-HWMGEQS9C0');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部导航 -->
+        <header class="header">
+            <div class="nav-container">
+                <h1 class="logo">图片处理工具</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn active" data-page="home">首页</button>
+                    <button class="nav-btn" data-page="enlarge">图片放大</button>
+                    <button class="nav-btn" data-page="text">添加文字</button>
+                    <a href="en/index.html" class="lang-btn">English</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 首页 -->
+            <div id="home" class="page active">
+                <div class="hero">
+                    <h2>专业的图片处理工具</h2>
+                    <p>支持图片放大和添加文字，简单易用，功能强大</p>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card" data-page="enlarge">
+                        <div class="feature-icon">🔍</div>
+                        <h3>图片放大</h3>
+                        <p>智能放大图片，保持清晰度，支持多种格式</p>
+                        <button class="feature-btn">立即体验</button>
+                    </div>
+                    
+                    <div class="feature-card" data-page="text">
+                        <div class="feature-icon">✏️</div>
+                        <h3>添加文字</h3>
+                        <p>在图片上添加自定义文字，支持颜色、大小调整</p>
+                        <button class="feature-btn">立即体验</button>
+                    </div>
+                </div>
+
+                <div class="examples">
+                    <h3>功能展示</h3>
+                    <div class="example-gallery">
+                        <div class="example-item">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" alt="示例图片">
+                            <p>处理前</p>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="example-item">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuWbvueJh+WKoOi9veWksei0pTwvdGV4dD48L3N2Zz4=" alt="示例图片">
+                            <p>处理后</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图片放大页面 -->
+            <div id="enlarge" class="page">
+                <div class="page-header">
+                    <h2 >图片放大工具</h2>
+                    <p >上传图片，选择放大倍数，获得高清大图</p>
+                </div>
+
+                <div class="tool-container">
+                    <div class="upload-area" id="enlargeUploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📁</div>
+                            <p >点击或拖拽上传图片</p>
+                            <p class="upload-hint" >支持 JPG、PNG、GIF 格式</p>
+                        </div>
+                        <input type="file" id="enlargeFileInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="controls" id="enlargeControls" style="display: none;">
+                        <div class="control-group">
+                            <label >放大倍数:</label>
+                            <select id="scaleSelect">
+                                <option value="2">2x</option>
+                                <option value="3">3x</option>
+                                <option value="4">4x</option>
+                                <option value="5">5x</option>
+                            </select>
+                        </div>
+                        <button class="process-btn" id="enlargeProcess" >开始放大</button>
+                    </div>
+
+                    <div class="result-area" id="enlargeResult" style="display: none;">
+                        <div class="result-header">
+                            <h3 >处理结果</h3>
+                            <button class="download-btn" id="enlargeDownload" >下载图片</button>
+                        </div>
+                        <div class="result-content">
+                            <canvas id="enlargeCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3 >使用说明</h3>
+                    <ol>
+                        <li >点击上传区域选择图片文件</li>
+                        <li >选择所需的放大倍数</li>
+                        <li >点击"开始放大"按钮处理图片</li>
+                        <li >处理完成后点击"下载图片"保存结果</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 添加文字页面 -->
+            <div id="text" class="page">
+                <div class="page-header">
+                    <h2 >图片添加文字工具</h2>
+                    <p >在图片上添加自定义文字，支持颜色、大小调整</p>
+                </div>
+
+                <div class="tool-container">
+                    <div class="upload-area" id="textUploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📁</div>
+                            <p >点击或拖拽上传图片</p>
+                            <p class="upload-hint" >支持 JPG、PNG、GIF 格式</p>
+                        </div>
+                        <input type="file" id="textFileInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div class="controls" id="textControls" style="display: none;">
+                        <div class="control-group">
+                            <label >输入文字:</label>
+                            <input type="text" id="textInput" placeholder="请输入要添加的文字">
+                        </div>
+                        <div class="control-group">
+                            <label >字体大小:</label>
+                            <input type="range" id="fontSizeSlider" min="12" max="72" value="24">
+                            <span id="fontSizeValue">24px</span>
+                        </div>
+                        <div class="control-group">
+                            <label >字体颜色:</label>
+                            <input type="color" id="fontColorPicker" value="#000000">
+                        </div>
+                        <div class="control-group">
+                            <label >字体:</label>
+                            <select id="fontFamilySelect">
+                                <option value="Arial">Arial</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Courier New">Courier New</option>
+                                <option value="Microsoft YaHei">微软雅黑</option>
+                                <option value="SimSun">宋体</option>
+                            </select>
+                        </div>
+                        <button class="process-btn" id="textProcess" >添加文字</button>
+                    </div>
+
+                    <div class="canvas-container" id="textCanvasContainer" style="display: none;">
+                        <canvas id="textCanvas"></canvas>
+                        <div class="canvas-instructions" >点击图片选择文字位置</div>
+                    </div>
+
+                    <div class="result-area" id="textResult" style="display: none;">
+                        <div class="result-header">
+                            <h3 >处理结果</h3>
+                            <button class="download-btn" id="textDownload" >下载图片</button>
+                        </div>
+                        <div class="result-content">
+                            <canvas id="textResultCanvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3 >使用说明</h3>
+                    <ol>
+                        <li >上传要添加文字的图片</li>
+                        <li >输入要添加的文字内容</li>
+                        <li >调整字体大小、颜色和样式</li>
+                        <li >点击图片选择文字位置</li>
+                        <li >点击"添加文字"按钮处理图片</li>
+                        <li >处理完成后下载结果</li>
+                    </ol>
+                </div>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p >© 2024 图片处理工具 - 简单易用的在线图片编辑工具</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
